@@ -7,22 +7,18 @@
     <title>FinancePro High-End | Vitex Store</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        /* --- CSS EMBUTIDO PARA GARANTIR QUE NADA SUMA --- */
+        /* --- CSS EMBUTIDO --- */
         
-         :root {
+        :root {
             --primary: #34d399;
-            /* Turquesa Vitex */
             --bg: #000000;
-            /* Fundo Preto Absoluto */
             --card: #0a0c12;
-            /* Fundo dos Cards Dark */
             --text: #ffffff;
             --text-muted: #8899a6;
             --border: #1a1f2e;
             --glow: rgba(52, 211, 153, 0.3);
             --transition: 0.3s ease;
         }
-        /* RESET E SEGURANÇA */
         
         * {
             margin: 0;
@@ -56,8 +52,40 @@
             max-width: 100%;
             height: auto;
         }
-        /* ESTRELAS DE FUNDO */
+
+        /* NOVOS ESTILOS PARA A SEÇÃO DE DETALHES */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 80px;
+        }
+
+        .details-card {
+            background: var(--card);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .details-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .details-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .details-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+        }
         
+        /* ESTRELAS DE FUNDO */
         .stars-bg {
             position: fixed;
             top: 0;
@@ -68,71 +96,7 @@
             pointer-events: none;
         }
         
-        .star {
-            position: absolute;
-            background: var(--primary);
-            border-radius: 50%;
-            opacity: 0;
-            animation: starFade linear infinite;
-        }
-        
-        @keyframes starFade {
-            0% {
-                opacity: 0;
-                transform: translateY(0);
-            }
-            20% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 0;
-                transform: translateY(-100vh);
-            }
-        }
-        /* NOTIFICAÇÕES GATILHO (CANTO INFERIOR) */
-        
-        #notification-area {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column-reverse;
-            gap: 10px;
-            pointer-events: none;
-        }
-        
-        .toast {
-            background: rgba(10, 12, 18, 0.9);
-            border: 1px solid var(--primary);
-            padding: 12px 20px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            width: 260px;
-            animation: slideIn 0.5s ease forwards, fadeOut 0.5s ease 4.5s forwards;
-            pointer-events: auto;
-        }
-        
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-        
-        @keyframes fadeOut {
-            to {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-        }
         /* HEADER */
-        
         header {
             padding: 15px 0;
             background: rgba(0, 0, 0, 0.85);
@@ -159,13 +123,6 @@
             padding: 2px 10px;
             border-radius: 6px;
             text-shadow: 0 0 10px var(--glow);
-            transition: var(--transition);
-            cursor: pointer;
-        }
-        
-        .v-logo:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px var(--primary-glow);
         }
         
         .store-name {
@@ -174,8 +131,8 @@
             font-size: 0.9rem;
             color: var(--text-muted);
         }
-        /* HERO SECTION */
         
+        /* HERO SECTION */
         .hero {
             padding: 180px 0 100px;
             display: flex;
@@ -183,22 +140,14 @@
             gap: 50px;
         }
         
-        .hero-content {
-            flex: 1;
-        }
-        
         .hero h1 {
             font-size: 3.5rem;
             font-weight: 900;
             line-height: 1;
             margin: 20px 0;
-            color: #fff;
         }
         
-        .highlight {
-            color: var(--primary);
-            text-shadow: 0 0 15px var(--glow);
-        }
+        .highlight { color: var(--primary); text-shadow: 0 0 15px var(--glow); }
         
         .badge {
             background: rgba(52, 211, 153, 0.1);
@@ -211,17 +160,7 @@
             display: inline-block;
         }
         
-        .hero p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            margin-bottom: 40px;
-        }
-        
-        .hero-image {
-            flex: 1.2;
-            display: flex;
-            justify-content: center;
-        }
+        .hero p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 40px; }
         
         .hero-image img {
             width: 100%;
@@ -229,23 +168,15 @@
             border-radius: 20px;
             border: 1px solid var(--border);
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
-            transition: 0.4s ease;
         }
-        
-        .hero-image img:hover {
-            transform: translateY(-10px) rotate(1deg);
-            border-color: var(--primary);
-            box-shadow: 0 30px 70px rgba(52, 211, 153, 0.2);
-        }
-        /* SCROLL INFINITO DE AVALIAÇÕES */
-        
+
+        /* REVIEWS */
         .infinite-reviews-section {
             padding: 80px 0;
             background: #030303;
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
             overflow: hidden;
-            position: relative;
         }
         
         .section-title {
@@ -262,25 +193,18 @@
             width: 100%;
             display: flex;
             overflow: hidden;
-            position: relative;
             mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
         
         .scroll-content {
             display: flex;
             gap: 30px;
             animation: scrollInfinite 40s linear infinite;
-            width: max-content;
         }
         
         @keyframes scrollInfinite {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         
         .review-card {
@@ -290,29 +214,9 @@
             border: 1px solid var(--border);
             min-width: 320px;
             text-align: center;
-            transition: var(--transition);
         }
-        
-        .review-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            background: #0c0f1a;
-        }
-        
-        .review-card span {
-            color: var(--primary);
-            font-size: 1rem;
-            display: block;
-            margin-bottom: 10px;
-        }
-        
-        .review-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            font-weight: 500;
-        }
+
         /* VITEX BRAND */
-        
         .vitex-brand {
             display: flex;
             align-items: center;
@@ -322,66 +226,21 @@
             border-radius: 30px;
             border: 1px solid var(--border);
             margin: 80px 0;
-            transition: var(--transition);
         }
         
-        .vitex-brand:hover {
-            border-color: var(--primary);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-        }
-        
-        .vitex-text {
-            flex: 1.2;
-        }
-        
-        .vitex-text h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        
-        .vitex-text p {
-            color: var(--text-muted);
-            margin-bottom: 30px;
-        }
-        
-        .vitex-img-container {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .info-img {
-            width: 100%;
-            max-width: 300px;
-            border-radius: 20px;
-            border: 1px solid var(--border);
-            transition: var(--transition);
-        }
-        
-        .info-img:hover {
-            filter: brightness(1.2);
-            border-color: var(--primary);
-        }
-        
+        .vitex-text h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 20px; }
         .support {
             font-weight: 700;
             color: var(--primary);
-            font-size: 1rem;
             background: rgba(52, 211, 153, 0.05);
             padding: 10px 20px;
             border-radius: 10px;
             display: inline-block;
             border: 1px solid rgba(52, 211, 153, 0.1);
         }
-        /* PREÇO E BOTÕES (PADRONIZADOS) */
-        
-        .pricing {
-            padding: 100px 0;
-            text-align: center;
-        }
-        
+
+        /* PRICING */
+        .pricing { padding: 100px 0; text-align: center; }
         .price-box {
             max-width: 550px;
             margin: 0 auto;
@@ -390,79 +249,24 @@
             border-radius: 30px;
             border: 2px solid var(--primary);
             box-shadow: 0 0 50px rgba(52, 211, 153, 0.2);
-            transition: var(--transition);
         }
         
-        .price-box:hover {
-            box-shadow: 0 0 70px rgba(52, 211, 153, 0.3);
-        }
-        
-        .offer-title {
-            font-size: 2.2rem;
-            font-weight: 900;
-            letter-spacing: 3px;
-            margin-bottom: 15px;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--glow);
-        }
-        
-        .new-price {
-            font-size: 5rem;
-            font-weight: 900;
-            line-height: 1;
-            margin: 15px 0;
-            color: #fff;
-        }
-        
-        .old-price {
-            text-decoration: line-through;
-            color: var(--text-muted);
-            font-size: 1.3rem;
-        }
-        
-        .btn-group {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 40px 0;
-            width: 100%;
-            align-items: center;
-        }
+        .new-price { font-size: 5rem; font-weight: 900; color: #fff; }
+        .old-price { text-decoration: line-through; color: var(--text-muted); font-size: 1.3rem; }
         
         .btn {
             text-decoration: none;
             padding: 20px 30px;
             border-radius: 12px;
             font-weight: 800;
-            text-transform: uppercase;
+            display: block;
             transition: 0.3s ease;
-            border: none;
-            font-size: 0.95rem;
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            cursor: pointer;
+            margin-bottom: 15px;
         }
         
-        .btn-primary {
-            background: var(--primary);
-            color: #000;
-            box-shadow: 0 5px 20px var(--primary-glow);
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.02);
-            filter: brightness(1.1);
-            box-shadow: 0 15px 30px var(--primary-glow);
-        }
-        /* AVISO DE ENTREGA */
-        
+        .btn-primary { background: var(--primary); color: #000; }
+        .btn-outline { border: 2px solid var(--primary); color: var(--primary); }
+
         .delivery-notice {
             background: rgba(255, 255, 255, 0.02);
             padding: 25px;
@@ -471,119 +275,26 @@
             text-align: left;
             margin-top: 30px;
         }
-        
-        .delivery-head {
-            font-weight: 900;
-            color: var(--primary);
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-        
-        .delivery-notice p {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-        
-        .safe-buy {
-            margin-top: 25px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 600;
-        }
-        /* FOOTER */
-        
-        footer {
-            padding: 60px 0;
-            text-align: center;
-            border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-        
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-        }
+
+        footer { padding: 60px 0; text-align: center; border-top: 1px solid var(--border); color: var(--text-muted); }
+
         /* REVEAL ANIMAÇÃO */
-        
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: 0.8s ease-out;
-        }
-        
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        /* RESPONSIVIDADE (MOBILE-FRIENDLY) */
-        
-        @media (max-width: 1024px) {
-            .hero h1 {
-                font-size: 3rem;
-            }
-            .v-logo {
-                font-size: 1.3rem;
-            }
-        }
-        
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
         @media (max-width: 768px) {
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                padding-top: 150px;
-                padding-bottom: 60px;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero-image {
-                margin-top: 40px;
-            }
-            .vitex-brand {
-                flex-direction: column;
-                text-align: center;
-                padding: 40px 20px;
-            }
-            .info-img {
-                max-width: 100%;
-                margin-top: 30px;
-            }
-            .new-price {
-                font-size: 4rem;
-            }
-            .price-box {
-                padding: 40px 20px;
-            }
-            .delivery-card {
-                max-width: 100%;
-            }
-            .btn-fixed,
-            .delivery-card {
-                max-width: 100%;
-            }
-            #notification-area {
-                display: none;
-            }
-            /* Esconde notificações no mobile para não poluir */
-            .infinite-reviews-section {
-                padding: 50px 0;
-            }
-            .review-card {
-                min-width: 260px;
-                padding: 20px;
-            }
+            .hero { flex-direction: column; text-align: center; padding-top: 150px; }
+            .hero h1 { font-size: 2.5rem; }
+            .vitex-brand { flex-direction: column; padding: 40px 20px; }
+            .details-grid { grid-template-columns: 1fr; }
+            .new-price { font-size: 4rem; }
         }
     </style>
 </head>
 
 <body oncontextmenu="return false;">
 
-    <div class="stars-bg" id="stars"></div>
-    <div id="notification-area"></div>
+    <div class="stars-bg"></div>
 
     <header>
         <div class="container header-flex">
@@ -597,35 +308,37 @@
             <div class="badge">PRODUTO EXCLUSIVO</div>
             <h1>A planilha que organiza tudo em <span class="highlight">segundos.</span></h1>
             <p>Tenha o controle da elite financeira com o design dark premium da Vitex. Simples, rápida e vitalícia.</p>
-            <a href="#checkout" class="btn btn-primary btn-hero">QUERO O ACESSO VITALÍCIO</a>
+            <a href="#checkout" class="btn btn-primary">QUERO O ACESSO VITALÍCIO</a>
         </div>
         <div class="hero-image reveal active">
-            <img src="img.png" alt="Dashboard FinancePro High-End">
+            <img src="img.png" alt="Dashboard FinancePro">
         </div>
     </section>
 
     <section class="infinite-reviews-section reveal">
         <h2 class="section-title">FEEDBACK DOS NOSSOS CLIENTES</h2>
         <div class="scroll-container">
-            <div class="scroll-content" id="infinite-scroll">
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Site 100% Confiável! Acesso imediato." - Pedro H.</p>
-                </div>
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Planilha absurda de rápida. Vale cada centavo." - Lucas M.</p>
-                </div>
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Design elite, suporte da Vitex me atendeu super bem." - Ana J.</p>
-                </div>
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Entrega automática funcionou perfeito na Hotmart." - Marcos P.</p>
-                </div>
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Melhor investimento que fiz esse ano." - Roberto L.</p>
-                </div>
-                <div class="review-card"><span>⭐⭐⭐⭐⭐</span>
-                    <p>"Offline e segura. Exatamente o que eu buscava." - Carla S.</p>
-                </div>
+            <div class="scroll-content">
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Site 100% Confiável! Acesso imediato." - Pedro H.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Planilha absurda de rápida." - Lucas M.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Design elite, suporte nota 10." - Ana J.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Entrega automática perfeita." - Marcos P.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Melhor investimento do ano." - Roberto L.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Site 100% Confiável! Acesso imediato." - Pedro H.</p></div>
+                <div class="review-card"><span>⭐⭐⭐⭐⭐</span><p>"Planilha absurda de rápida." - Lucas M.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container reveal">
+        <div class="details-grid">
+            <div class="details-card">
+                <h3>Sobre a <span class="highlight">Vitex</span></h3>
+                <p>A Vitex Store é referência em ferramentas digitais de alta performance. Nosso foco é transformar a complexidade em simplicidade através de um design minimalista e funcional. Não vendemos apenas arquivos, entregamos clareza mental e tempo para nossos clientes da elite digital.</p>
+            </div>
+            <div class="details-card">
+                <h3>A <span class="highlight">Planilha</span></h3>
+                <p>O FinancePro High-End foi esculpido para quem exige agilidade. Com um motor de cálculo ultra-leve e interface Dark Mode, você registra seus ganhos e gastos em cliques. Inclui relatórios automáticos, projeção mensal e segurança total de dados (uso 100% offline).</p>
             </div>
         </div>
     </section>
@@ -635,128 +348,52 @@
             <div class="vitex-text">
                 <h2>Vitex Store <span class="highlight">Elite</span></h2>
                 <p>Nossa missão é sua produtividade. Entregamos apenas ferramentas validadas, com suporte dedicado e foco em performance.</p>
-                <div class="support">Suporte: <a href="mailto:vitexstor3@gmail.com">vitexstor3@gmail.com</a></div>
+                <div class="support">Suporte: <a href="mailto:vitexstor3@gmail.com" style="color:inherit; text-decoration:none;">vitexstor3@gmail.com</a></div>
             </div>
             <div class="vitex-img-container">
-                <img src="vitex.logo.png" alt="Selo de Qualidade Vitex Store" class="info-img">
+                <img src="vitex.logo.png" alt="Selo Vitex" style="max-width:200px; border-radius:20px;">
             </div>
         </div>
     </section>
 
     <section class="container pricing" id="checkout">
         <div class="price-box reveal">
-            <h2 class="offer-title">ACESSO VITALÍCIO</h2>
+            <h2 style="font-size: 2rem; margin-bottom: 10px;">ACESSO VITALÍCIO</h2>
             <div class="old-price">De R$ 50,79 por apenas</div>
             <div class="new-price">R$ 24,99</div>
 
-            <div class="btn-group">
-                <a href="https://go.hotmart.com/V104444038W?dp=1" class="btn btn-primary btn-fixed">Comprar pelo site vitexstore e receber por email pela Hotmart.</a>
-                <a href="https://go.hotmart.com/V104444038W" class="btn btn-outline btn-fixed">Pela pagina da Hotmart</a>
+            <div style="margin: 40px 0;">
+                <a href="https://go.hotmart.com/V104444038W?dp=1" class="btn btn-primary">COMPRAR E RECEBER AGORA</a>
+                <a href="https://go.hotmart.com/V104444038W" class="btn btn-outline">PÁGINA OFICIAL HOTMART</a>
             </div>
 
             <div class="delivery-notice">
-                <div class="delivery-head">⚡ ENTREGA IMEDIATA</div>
-                <p>O acesso é enviado ao seu e-mail no mesmo segundo da confirmação do pagamento.</p>
+                <div style="font-weight:900; color:var(--primary); font-size:0.8rem;">⚡ ENTREGA IMEDIATA</div>
+                <p style="font-size:0.9rem;">O acesso é enviado ao seu e-mail no mesmo segundo da confirmação do pagamento via Hotmart.</p>
             </div>
-            <p class="safe-buy">🛡️ Compra 100% Segura & Criptografada via SSL</p>
-            <p class="safe-buy">📦 3. Entrega automática Depois que o pagamento é aprovado: A própria Hotmart: Cria uma conta pro cliente (ou usa a dele) Libera o acesso ao produto Envia um e-mail automático com o acesso</p>
-
+            <p style="font-size:0.8rem; margin-top:20px; color:var(--text-muted);">🛡️ Compra Segura & Criptografada</p>
         </div>
     </section>
 
     <footer>
         <div class="container">
             <p>&copy; 2024 Vitex Store. Todos os direitos reservados.</p>
-            <p style="margin-top:10px; font-size:0.8rem;">Dúvidas? <a href="mailto:vitexstor3@gmail.com">Entre em contato</a></p>
         </div>
     </footer>
 
     <script>
-        // --- JS EMBUTIDO PARA NÃO TER ERRO DE CAMINHO ---
-
-        // 1. NOTIFICAÇÕES GATILHO DE CONFIANÇA (SITE CONFIAVEL / COMPRE JA)
-        const alerts = [
-            "✅ Site 100% Confiável",
-            "🚀 Compre já e receba agora",
-            "💎 Acesso Vitalício Liberado",
-            "🔥 19 pessoas vendo agora",
-            "🔒 Pagamento Criptografado",
-            "⭐ Avaliado como 5 estrelas",
-            "✓ Satisfação Garantida (7 dias)"
-        ];
-
-        function spawnAlert() {
-            const area = document.getElementById('notification-area');
-            if (!area) return; // Segurança contra erro de renderização
-            const msg = alerts[Math.floor(Math.random() * alerts.length)];
-
-            const toast = document.createElement('div');
-            toast.className = 'toast';
-            toast.innerHTML = `<div style="font-weight:700; font-size:0.85rem; text-align:center; color:#fff;">${msg}</div>`;
-
-            area.appendChild(toast);
-            // Remove a notificação após 5 segundos
-            setTimeout(() => {
-                if (toast) toast.remove();
-            }, 5000);
-        }
-        // Inicia o ciclo de notificações (a cada 7 segundos)
-        if (window.innerWidth > 768) { // Apenas no Desktop
-            setInterval(spawnAlert, 7000);
-            setTimeout(spawnAlert, 2000); // Primeira notificação rápida
-        }
-
-        // 2. CONFIGURAÇÃO SCROLL INFINITO (DUPLICAÇÃO DE CONTEÚDO)
-        const scrollContent = document.getElementById('infinite-scroll');
-        if (scrollContent) {
-            // Duplicamos o conteúdo HTML para o loop ser perfeito e infinito
-            scrollContent.innerHTML += scrollContent.innerHTML;
-        }
-
-        // 3. ESTRELAS DE FUNDO TURQUESAS
-        const starsContainer = document.getElementById('stars');
-        if (starsContainer) {
-            for (let i = 0; i < 60; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                const size = Math.random() * 10 + 2 + 'px';
-                star.style.width = size;
-                star.style.height = size;
-                star.style.left = Math.random() * 100 + 'vw';
-                star.style.top = Math.random() * 100 + 'vh';
-                // Variamos a duração da animação para naturalidade
-                star.style.animationDuration = (Math.random() * 2 + 1) + 's';
-                star.style.animationDelay = (Math.random() * 5) + 's';
-                starsContainer.appendChild(star);
-            }
-        }
-
-        // 4. REVEAL AO SCROLL (ANIMAÇÃO DE APARECER)
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
+        // Simples animação de reveal no scroll
+        const reveals = document.querySelectorAll('.reveal');
+        window.addEventListener('scroll', () => {
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < windowHeight - 100) {
+                    reveal.classList.add('active');
+                }
             });
-        }, {
-            threshold: 0.1
-        }); // Começa a animação quando 10% do elemento aparece
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // 5. BLINDAGEM TOTAL (BLOQUEAR F12, CTRL+U, CTRL+SHIFT+I)
-        document.onkeydown = function(e) {
-            // F12
-            if (e.keyCode == 123) {
-                return false;
-            }
-            // Ctrl+Shift+I (Inspecionar)
-            if (e.ctrlKey && e.shiftKey && (e.keyCode == 'I'.charCodeAt(0) || e.keyCode == 'J'.charCodeAt(0))) {
-                return false;
-            }
-            // Ctrl+U (Exibir Código Fonte)
-            if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) {
-                return false;
-            }
-        };
+        });
     </script>
-</body>
 
+</body>
 </html>
